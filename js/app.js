@@ -22,8 +22,6 @@ const displayMenu = menubar => {
     });
 
 }
-//spinner
-
 
 const loadCardDetail = async (code) => {
 
@@ -119,7 +117,7 @@ const displayLoadDtail = (details) => {
 const toggleSpiner = isLoading => {
     const loaderSection = document.getElementById('loader');
     if (isLoading === 0) {
-        console.log('run');
+        // console.log('run');
         loaderSection.classList.remove('d-none');
     }
     else {
