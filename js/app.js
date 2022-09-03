@@ -38,12 +38,18 @@ const displayCardDetail = (cards) => {
     else {
         textAlart.classList.add('d-none')
     }
+    const itemViwer = cards.length;
+    //console.log(len);
+    const itemViwerField = document.getElementById('item-viewer');
+    itemViwerField.innerHTML = `
+    <p  class=" p-4 ms-5 mt-3 me-5 fs-5"> The category have ${itemViwer} items</p>
+    `;
     displayCard.textContent = '';
     cards.forEach(card => {
         const cardDiv = document.createElement('div');
         cardDiv.innerHTML = `
         <div class="m-4 row g-0">
-                    <div class="col-md-4">
+                    <div class="col-md-1">
                         <img src="${card.thumbnail_url}" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-8">
