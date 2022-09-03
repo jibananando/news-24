@@ -71,7 +71,7 @@ const displayCardDetail = (cards) => {
                             <h6>${card.author.name ? card.author.name : 'Author name not found'}<h6>
                             <p><span>view: <span>${card.total_view ? card.total_view : 'hidden'}<p>
                             </div>
-                            <div class="d-grid gap-2"><button class="btn btn-outline-primary" type="button">Details</button></div>
+                            <div class="d-grid gap-2"><button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-field" type="button" onclick="loadDtails('${card._id}')">Details</button></div>
 
                         </div>
                     </div>
@@ -83,6 +83,35 @@ const displayCardDetail = (cards) => {
     // stop spiner
     toggleSpiner(false);
 
+}
+
+const loadDtails = async (details) => {
+    url = `https://openapi.programming-hero.com/api/news/${details}`
+    try {
+        const res = await fetch(url)
+        const data = await res.json()
+        displayLoadDtail(data.data[0])
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+const displayLoadDtail = (details) => {
+    const displayDtail = document.getElementById('modal-id');
+    displayDtail.textContent = '';
+    const modalDiv = document.createElement('div');
+    modalDiv.innerHTML = `
+        <h5 class="modal-title" id="modal-fieldLabel">${details.title}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-body">
+        <img src="${details.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+        <p class="card-text">${details.details}</p>
+        <img src="${details.author.img}" style="width: 50px;" class="rounded-circle img-fluid m-2" alt="...">
+        <h6>${details.author.name ? details.author.name : 'Author name not found'}<h6>
+        <p><span>view: <span>${details.total_view ? details.total_view : 'hidden'}<p>
+        </div>
+    `;
+    displayDtail.appendChild(modalDiv);
 }
 
 // const toggleSpiner = isLoading => {
