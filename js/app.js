@@ -59,7 +59,7 @@ const displayCardDetail = (cards) => {
     cards.forEach(card => {
         const cardDiv = document.createElement('div');
         cardDiv.innerHTML = `
-        <div class="m-4 row g-0">
+        <div class="m-4 row g-2">
                     <div class="col-md-2">
                         <img src="${card.thumbnail_url}" class="img-fluid rounded-start" alt="...">
                     </div>
