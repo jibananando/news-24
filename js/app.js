@@ -24,7 +24,6 @@ const displayMenu = menubar => {
 }
 
 const loadCardDetail = async (code) => {
-
     const url = `https://openapi.programming-hero.com/api/news/category/0${code}`
     try {
         const res = await fetch(url)
@@ -34,12 +33,15 @@ const loadCardDetail = async (code) => {
     catch (error) {
         console.log(error);
     }
-    // Start spiner
-    toggleSpiner(true);
+
 }
+
 const displayCardDetail = (cards) => {
+    // start spinner
+    toggleSpinner(true);
     cards.sort((a, b) => b.total_view - a.total_view);
     const displayCard = document.getElementById('card-fields');
+
     const textAlart = document.getElementById('no-data');
     if (cards.length === 0) {
         textAlart.classList.remove('d-none');
@@ -80,7 +82,7 @@ const displayCardDetail = (cards) => {
 
     });
     // stop spiner
-    toggleSpiner(false);
+    toggleSpinner(false);
 
 }
 loadCardDetail(8);
@@ -114,16 +116,16 @@ const displayLoadDtail = (details) => {
     displayDtail.appendChild(modalDiv);
 }
 // spinner part
-const toggleSpiner = isLoading => {
-    const loaderSection = document.getElementById('loader');
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader-field');
     if (isLoading === 0) {
         // console.log('run');
         loaderSection.classList.remove('d-none');
     }
-    else {
-        console.log('not run');
-        loaderSection.classList.add('d-none');
-    }
+    // else {
+    //     console.log('not run');
+    //     loaderSection.classList.add('d-none');
+    // }
 }
 
 loadMenu();
